@@ -8,3 +8,4 @@ mv report.html ../automatization/reports
 cd ../fabric-samples/test-network
 ./network.sh down
 cd ../../automatization/
+exit
