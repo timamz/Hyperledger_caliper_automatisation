@@ -30,7 +30,7 @@ function run_benchmark() {
 
 source .venv/bin/activate
 
-for value in 10 15 
+for value in 10 15 20 30 35 40 45 50
 do
     run_benchmark $value 
 done
