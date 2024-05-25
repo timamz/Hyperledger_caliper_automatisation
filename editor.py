@@ -1,7 +1,7 @@
 import yaml
 import sys
 
-def change_BatchSize(value, key):
+def edit(value, key):
     with open('/Users/timopheymazurenko/projects/course_work_2/fabric/sampleconfig/core.yaml', 'r') as file:
         content = yaml.safe_load(file)
 
@@ -19,7 +19,7 @@ def change_BatchSize(value, key):
 if __name__ == "__main__":
     value = int(sys.argv[1])
     key = sys.argv[2]
-    change_BatchSize(value, key)
+    edit(value, key)
 
     print('----------------------------')
     print('Editing is done successfully')
