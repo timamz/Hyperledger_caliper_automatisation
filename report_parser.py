@@ -1,23 +1,25 @@
 from bs4 import BeautifulSoup
 import csv
-import yaml
+import sys
 
 
-with open('/Users/timopheymazurenko/projects/course_work_2/automatisation/report.html') as report:
-    good_soup = BeautifulSoup(report, 'html.parser')
+def parse_results(parameter_value, output_path):
+    with open('/Users/timopheymazurenko/projects/course_work_2/automatisation/report.html') as report:
+        good_soup = BeautifulSoup(report, 'html.parser')
 
-row = good_soup.find('td', string='readAsset').find_parent('tr')
-data = [td.text for td in row.find_all('td')][1:]
+    row = good_soup.find('td', string='readAsset').find_parent('tr')
+    data = [td.text for td in row.find_all('td')][1:]
 
-with open('/Users/timopheymazurenko/projects/course_work_2/fabric/sampleconfig/core.yaml', 'r') as file:
-    content = yaml.safe_load(file)
+    row = [parameter_value]
+    row += data
 
-batchSize_value = content['peer']['gossip']['state']['batchSize']
-row = [batchSize_value]
-row += data
+    with open(output_path, 'a') as table:
+        writer = csv.writer(table)
+        writer.writerow(row)
 
-with open('reports.csv', 'a') as table:
-    writer = csv.writer(table)
-    writer.writerow(row)
 
-print('adding report data is done successfully')
+if __name__ == "__main__":
+    value = int(sys.argv[1])
+    path = '/Users/timopheymazurenko/projects/course_work_2/automatisation/benchmark_result/batchSize_reports.csv'
+    parse_results(value, path)
+    print('adding report data is done successfully')

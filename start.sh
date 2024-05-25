@@ -2,11 +2,9 @@
 
 function run_benchmark() {
 
-    local value=$1
-    python3 editor.py $value
-    echo "Running benchmark with value: $value"
+    python3 editors/batchSize_editor.py $1
+    echo "Running benchmark with value: $1"
     
-
     cd ../fabric
     make clean docker-clean peer-docker orderer-docker tools-docker docker-thirdparty docker native
 
@@ -19,7 +17,7 @@ function run_benchmark() {
 
     mv report.html ../automatisation/
     cd ../automatisation/
-    python3 report_parser.py
+    python3 report_parser.py $1
     rm report.html
 
     cd ../fabric-samples/test-network
@@ -32,9 +30,9 @@ function run_benchmark() {
 
 source .venv/bin/activate
 
-for value in 25 30
+for value in 10 15 
 do
-    run_benchmark $value
+    run_benchmark $value 
 done
 
 deactivate
