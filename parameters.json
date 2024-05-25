@@ -1,0 +1,12 @@
+{
+    "batchSize": {
+        "key": "peer.gossip.state.batchSize",
+        "values": [10],
+        "path_to_output": "/Users/timopheymazurenko/projects/course_work_2/automatisation/benchmark_result/batchSize_reports.csv"
+    },
+    "maxBlockCountToStore": {
+        "key": "peer.gossip.maxBlockCountToStore",
+        "values": [10],
+        "path_to_output": "/Users/timopheymazurenko/projects/course_work_2/automatisation/benchmark_result/maxBlockCountToStore_reports.csv"
+    }
+}

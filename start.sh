@@ -1,10 +1,6 @@
 #!/bin/bash
 
-function run_benchmark() {
-
-    python3 editors/batchSize_editor.py $1
-    echo "Running benchmark with value: $1"
-    
+function execute_benchmark() {
     cd ../fabric
     make clean docker-clean peer-docker orderer-docker tools-docker docker-thirdparty docker native
 
@@ -17,22 +13,54 @@ function run_benchmark() {
 
     mv report.html ../automatisation/
     cd ../automatisation/
-    python3 report_parser.py $1
-    rm report.html
+}
 
+function shut_down() {
     cd ../fabric-samples/test-network
     ./network.sh down
-
-    docker rmi -f $(docker images -aq)
 
     cd ../../automatisation/
 }
 
+function edit_execute_parse() {
+
+    local parameter=$1
+    local key=$2
+    local value=$3
+    local output_path=$4
+
+    echo "Executing function for parameter: $parameter with value: $value"
+
+    python3 editor.py "$value" "$key"
+
+    execute_benchmark
+
+    python3 report_parser.py "$value" "$output_path"
+    rm report.html
+
+    shut_down
+}
+
+function reset_core() {
+    rm ../fabric/sampleconfig/core.yaml
+    cp ../fabric-samples/config/core.yaml ../fabric/sampleconfig/core.yaml
+}
+
 source .venv/bin/activate
 
-for value in 10 15 20 30 35 40 45 50
-do
-    run_benchmark $value 
+json_file="parameters.json"
+parameter_names=$(jq -r 'keys[]' "$json_file")
+
+for param in $parameter_names; do
+    key=$(jq -r --arg param "$param" '.[$param].key' "$json_file")
+    values=$(jq -r --arg param "$param" '.[$param].values[]' "$json_file")
+    output_path=$(jq -r --arg param "$param" '.[$param].path_to_output' "$json_file")
+
+    for value in $values; do
+        edit_execute_parse "$param" "$key" "$value" "$output_path"
+    done
+
+    reset_core
 done
 
 deactivate

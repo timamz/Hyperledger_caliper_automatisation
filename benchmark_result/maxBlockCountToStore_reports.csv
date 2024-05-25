@@ -1,3 +1,1 @@
 maxBlockCountToStore,Succ,Fail,Send rate,Max latency,Min Latency,Avg Latency,Throughput
-10,16534,0,558.7,0.04,0.00,0.00,558.6
-15,16217,0,548.0,0.09,0.00,0.00,547.9

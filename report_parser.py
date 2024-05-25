@@ -20,6 +20,9 @@ def parse_results(parameter_value, output_path):
 
 if __name__ == "__main__":
     value = int(sys.argv[1])
-    path = '/Users/timopheymazurenko/projects/course_work_2/automatisation/benchmark_result/batchSize_reports.csv'
+    path = str(sys.argv[2])
     parse_results(value, path)
-    print('adding report data is done successfully')
+
+    print('---------------------------------------')
+    print('Adding report data is done successfully')
+    print('---------------------------------------')
