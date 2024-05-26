@@ -11,7 +11,7 @@ def add_field(param_name, key, values):
     with open('parameters.json', 'r') as parameters:
         data = json.load(parameters)
     
-    path_to_output = f'/Users/timopheymazurenko/projects/course_work_2/automatisation/benchmark_result/{param_name}_reports.csv'
+    path_to_output = f'/Users/timopheymazurenko/projects/course_work_2/HLC_matisation/benchmark_result/{param_name}_reports.csv'
     
     data[param_name] = {
         "key": key,

@@ -4,7 +4,7 @@ import sys
 
 
 def parse_results(parameter_value, output_path):
-    with open('/Users/timopheymazurenko/projects/course_work_2/automatisation/report.html') as report:
+    with open('/Users/timopheymazurenko/projects/course_work_2/HLC_automatisation/report.html') as report:
         good_soup = BeautifulSoup(report, 'html.parser')
 
     row = good_soup.find('td', string='readAsset').find_parent('tr')

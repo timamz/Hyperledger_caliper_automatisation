@@ -11,15 +11,15 @@ function execute_benchmark() {
     cd ../../caliper-workspace
     npx caliper launch manager --caliper-workspace ./ --caliper-networkconfig networks/networkConfig.yaml --caliper-benchconfig benchmarks/myAssetBenchmark.yaml --caliper-flow-only-test
 
-    mv report.html ../automatisation/
-    cd ../automatisation/
+    mv report.html ../HLC_automatisation/
+    cd ../HLC_automatisation/
 }
 
 function shut_down() {
     cd ../fabric-samples/test-network
     ./network.sh down
 
-    cd ../../automatisation/
+    cd ../../HLC_automatisation/
 }
 
 function edit_execute_parse() {
