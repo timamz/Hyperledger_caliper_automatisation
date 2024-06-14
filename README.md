@@ -1,4 +1,4 @@
-## This is the project i have done as a term paper on my 2nd year of studies at the faculty of CS at HSE university.
+## This is the project I have done as a term paper on my 2nd year of studies at the faculty of CS at HSE university.
 
 ### Project Supervisor: [Yury Yanovich](https://www.hse.ru/en/org/persons/134005657)
 
